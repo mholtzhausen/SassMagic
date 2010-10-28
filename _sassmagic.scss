@@ -1,7 +1,7 @@
-@mixin rounded-box($tl=5px,$tr=none,$bl=none,$br=none){
+@mixin rounded-box($tl:5px,$tr:none,$bl:none,$br:none){
 	@if $tr == none {$tr:$tl;}
 	@if $bl == none {$bl:$tl;}
-	@if $br == none {$br:$tr;}
+	@if $br == none {$br:$bl;}
 	
 	-moz-border-radius-topleft : $tl; 
 	-moz-border-radius-topright : $tr; 
@@ -18,5 +18,72 @@
 	border-bottom-right-radius : $br; 	
 }
 
-@mixin shadow(){ 
+@mixin box-shadow($blur:5px,$color:#000000,$x_off:0px,$y_off:none){
+	@if $y_off==none {$y_off:$x_off}
+
+	-webkit-box-shadow: $x_off $y_off $blur $color;
+	-moz-box-shadow: $x_off $y_off $blur $color;
+	box-shadow: $x_off $y_off $blur $color; 
+}
+
+@mixin text-shadow($blur:5px,$color:#000000,$x_off:0px,$y_off:none){
+	@if $y_off==none {$y_off:$x_off}
+
+	text-shadow: $x_off $y_off $blur $color;
+	filter: dropshadow(color=$color, offx=$x_off, offy=$y_off); 
+}
+
+@mixin columnize($columns: 2, $colspace: 10px){
+	-moz-column-count: $columns;
+	-moz-column-gap: $colspace;
+	-webkit-column-count: $columns;
+	-webkit-column-gap: $colspace;
+	column-count: $columns;
+	column-gap: $colspace; 
+}
+
+@mixin border-box(){
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box; 
+}
+
+@mixin transition($seconds: 2, $what:all, $method: ease-in-out ){
+	-webkit-transition: $what $seconds $method;
+	-moz-transition: $what $seconds $method;
+	-o-transition: $what $seconds $method;
+	transition: $what $seconds $method;
+}
+
+@mixin transform($scale:1, $rotate:0, $translate_x: 0px, $translate_y:0px, $skew_x: 0, $skew_y:0){
+	$rotate:#{$rotate}deg;
+	$skew_x:#{$skew_x}deg;
+	$skew_y:#{$skew_y}deg;
+	
+	-moz-transform: scale($scale) rotate($rotate) translate($translate_x,$translate_y) skew($skew_x,$skew_y);
+	-webkit-transform: scale($scale) rotate($rotate) translate($translate_x,$translate_y) skew($skew_x,$skew_y);
+	-o-transform: scale($scale) rotate($rotate) translate($translate_x,$translate_y) skew($skew_x,$skew_y);
+	transform: scale($scale) rotate($rotate) translate($translate_x,$translate_y) skew($skew_x,$skew_y);
+}
+
+@mixin rotate($deg:15){
+	@include transform(1,$deg);
+}
+
+@mixin h-gradient($startColor:#DDDDDD, $endColor:none){
+	@if $endColor==none {$endColor:lighten($startColor,10%);}
+
+	background: $startColor; /* old browsers */
+	background: -moz-linear-gradient(left, $startColor 0%, $endColor 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,$startColor), color-stop(100%,$endColor)); /* webkit */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$startColor}', endColorstr='#{$endColor}',GradientType=1 ); /* ie */
+}
+
+@mixin v-gradient($startColor:#DDDDDD, $endColor:none){
+	@if $endColor==none {$endColor:lighten($startColor,10%);}
+
+	background: $startColor; /* old browsers */
+	background: -moz-linear-gradient(top, $startColor 0%, $endColor 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$startColor), color-stop(100%,$endColor)); /* webkit */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$startColor}', endColorstr='#{$endColor}',GradientType=0 ); /* ie */
 }
