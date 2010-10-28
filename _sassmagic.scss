@@ -70,6 +70,11 @@
 	@include transform(1,$deg);
 }
 
+
+@mixin skew($deg:5){
+	@include transform(1,0,0px,0px,$deg,$deg);
+}
+
 @mixin h-gradient($startColor:#DDDDDD, $endColor:none){
 	@if $endColor==none {$endColor:lighten($startColor,10%);}
 
@@ -86,4 +91,15 @@
 	background: -moz-linear-gradient(top, $startColor 0%, $endColor 100%); /* firefox */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$startColor), color-stop(100%,$endColor)); /* webkit */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$startColor}', endColorstr='#{$endColor}',GradientType=0 ); /* ie */
+}
+
+@mixin TTF($name:none, $url:none, $bold:false, $italic:false){
+	@if $name!=none {
+		@font-face {
+		  font-family: $name;
+		  @if $italic==true {font-style: italic;}
+		  @if $bold==true {font-weight: bold;}
+		  src: url($url) format("truetype");
+		}
+	}
 }
