@@ -1,0 +1,22 @@
+@mixin rounded-box($tl=5px,$tr=none,$bl=none,$br=none){
+	@if $tr == none {$tr:$tl;}
+	@if $bl == none {$bl:$tl;}
+	@if $br == none {$br:$tr;}
+	
+	-moz-border-radius-topleft : $tl; 
+	-moz-border-radius-topright : $tr; 
+	-webkit-border-top-left-radius : $tl;
+	-webkit-border-top-right-radius : $tr; 
+	border-top-left-radius : $tl;
+	border-top-right-radius : $tr; 	
+
+	-moz-border-radius-bottomleft : $bl; 
+	-moz-border-radius-bottomright : $br; 
+	-webkit-border-bottom-left-radius : $bl;
+	-webkit-border-bottom-right-radius : $br; 
+	border-bottom-left-radius : $bl;
+	border-bottom-right-radius : $br; 	
+}
+
+@mixin shadow(){ 
+}
