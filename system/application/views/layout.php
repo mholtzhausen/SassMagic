@@ -1,9 +1,16 @@
 <html>
 <head>
-  <title>Sass Magic</title>
+
+<link id="bespin_base" href="/js/bespin"/>
+
+<link rel="stylesheet" type="text/css" href="/js/bespin/BespinEmbedded.css">
+
+<script src="/js/bespin/BespinEmbedded.uncompressed.js" type="text/javascript"></script>
+<script src="/js/less.js" type="text/javascript"></script>
 </head>
 
-<link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet/less" href="css/common.less" type="text/css" charset="utf-8" />
+
 
 
 <body>
